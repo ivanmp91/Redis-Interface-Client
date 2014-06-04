@@ -25,15 +25,15 @@ perldoc command.
 
 SYNOPSIS
 
-  use Redis::Interface::Client;
+	use Redis::Interface::Client;
 
-  my $cache = Redis::Interface::Client->new(server=>"redis1:6379");
+	my $cache = Redis::Interface::Client->new(server=>"redis1:6379");
 
-  $cache->set($key, $value);
-  $cache->set($key, \@array_of_values);
-  $cache->set($key, $value [, $expiration_time]);
-
-  my @results = $cache->get($key);
+	$cache->set($key, $value);
+	$cache->set($key, \@array_of_values);
+	$cache->set($key, $value [, $expiration_time]);
+	my @results = $cache->get($key);
+	$cache->disconnect;
 
 
 LICENSE AND COPYRIGHT

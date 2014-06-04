@@ -1,0 +1,15 @@
+Changes
+lib/Redis/Interface/Client.pm
+lib/Redis/Interface/Client/Add.pm  
+lib/Redis/Interface/Client/Delete.pm  
+lib/Redis/Interface/Client/Get.pm  
+lib/Redis/Interface/Client/Replace.pm  
+lib/Redis/Interface/Client/Set.pm
+lib/Redis/Interface/Client/Append.pm
+Makefile.PL
+MANIFEST			This list of files
+README
+t/00-load.t
+t/manifest.t
+t/pod-coverage.t
+t/pod.t

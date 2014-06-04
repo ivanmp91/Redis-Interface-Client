@@ -23,19 +23,17 @@ perldoc command.
 
     perldoc Redis::Interface::Client
 
-You can also look for information at:
+SYNOPSIS
 
-    RT, CPAN's request tracker (report bugs here)
-        http://rt.cpan.org/NoAuth/Bugs.html?Dist=Redis-Interface-Client
+  use Redis::Interface::Client;
 
-    AnnoCPAN, Annotated CPAN documentation
-        http://annocpan.org/dist/Redis-Interface-Client
+  my $cache = Redis::Interface::Client->new(server=>"redis1:6379");
 
-    CPAN Ratings
-        http://cpanratings.perl.org/d/Redis-Interface-Client
+  $cache->set($key, $value);
+  $cache->set($key, \@array_of_values);
+  $cache->set($key, $value [, $expiration_time]);
 
-    Search CPAN
-        http://search.cpan.org/dist/Redis-Interface-Client/
+  my @results = $cache->get($key);
 
 
 LICENSE AND COPYRIGHT

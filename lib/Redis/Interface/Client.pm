@@ -56,7 +56,27 @@ rw, String, default=undef; server definition for a redis server: <HOSTNAME:PORT>
 has server => (
                 is      => 'rw',
                 isa     => 'Str',
-                default => undef
+                default => ''
+);
+
+=head2 sentinels
+rw, String, default=undef; Array reference with a list of sentinel servers
+=cut
+
+has sentinels => (
+	is 	=> 'rw',
+	isa 	=> 'ArrayRef[Str]',
+	default	=> undef
+);
+
+=head2 service
+rw, String, default=undef; Service name to use with sentinel
+=cut
+
+has service => (
+        is      => 'rw',
+        isa     => 'Str',
+        default => ''
 );
 
 =head2 _accessor
@@ -97,11 +117,16 @@ Constructor of the class to initialize the Redis object
 sub BUILD
 {
     my $self = shift;
-    my $object = Redis->new(server => $self->server, debug=>$self->debug_mode);
+    my $object;
+    if(defined($self->sentinels) && defined($self->service)){
+        $object = Redis->new(sentinels => $self->sentinels, service => $self->service , debug => $self->debug_mode);	
+    } else{
+        $object = Redis->new(server => $self->server, debug => $self->debug_mode);
+    }
     $self->_accessor($object);
 }
 
-=head2 disconnect_all
+=head2 disconnect
 Method to disconnect from the server
 =cut
 

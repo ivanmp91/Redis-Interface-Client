@@ -66,7 +66,7 @@ rw, String, default=undef; Array reference with a list of sentinel servers
 has sentinels => (
 	is 	=> 'rw',
 	isa 	=> 'ArrayRef[Str]',
-	default	=> undef
+	default	=> sub { [] }
 );
 
 =head2 service
@@ -118,7 +118,8 @@ sub BUILD
 {
     my $self = shift;
     my $object;
-    if(defined($self->sentinels) && defined($self->service)){
+    my $sentinels = $self->sentinels;
+    if((grep {defined $_ } @$sentinels) && ($self->service ne '')){
         $object = Redis->new(sentinels => $self->sentinels, service => $self->service , debug => $self->debug_mode);	
     } else{
         $object = Redis->new(server => $self->server, debug => $self->debug_mode);
